@@ -57,3 +57,49 @@ h1 {
   flex-flow: row wrap;
   margin: 1.5rem auto 0px auto;
 }
+
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  padding: 5px;
+}
+
+.player-wrapper {
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+input:active {
+  border: 0px;
+  outline: 2px solid #2bdfff;
+}
+
+input:focus {
+  outline: 2px solid #2bdfff;
+}
+
+#start-btn {
+  font-size: 18px;
+  width: 113px;
+  height: 32px;
+  border-width: 0px;
+  color: #fff;
+  border-color: rgba(74, 144, 226, 1);
+  font-weight: bold;
+  border-top-left-radius: 42px;
+  border-top-right-radius: 42px;
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+  text-shadow: 0px 0px 0px rgba(74, 144, 226, 1);
+  background: rgba(74, 144, 226, 1);
+  cursor: pointer;
+}
+
+#start-btn:hover {
+  background: rgba(100, 144, 226, 1);
+}
