@@ -10,14 +10,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  overflow: hidden;
 }
 
-h1, h3 {
+h1,
+h3 {
   text-align: center;
   font-weight: bolder;
 }
 
-h1{
+h1 {
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -108,4 +110,16 @@ input:focus {
 
 #start-btn:hover {
   background: rgba(100, 144, 226, 1);
+}
+
+#invisible-div {
+  width: 410px;
+  height: 460px;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1.5rem auto 0px auto;
+  background-color: #00000000;
+  position: absolute;
+  left: 39.5vw;
+  top: 10vh;
 }

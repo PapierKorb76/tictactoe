@@ -3,6 +3,8 @@ const Player1TextBox = document.querySelector("#player-1-textbox");
 const Player2TextBox = document.querySelector("#player-2-textbox");
 const startBtn = document.querySelector("#start-btn");
 const gameDisplayer = document.querySelector("#game-displayer");
+const invisibleDiv = document.querySelector("#invisible-div");
+let gameEnded = false;
 
 let TicTacToe = [
   ' ', ' ', ' ',
@@ -10,6 +12,10 @@ let TicTacToe = [
   ' ', ' ', ' '
 ];
 
+
+var nextTurn = 'X';
+
+invisibleDiv.style.display = "none";
 
 function PlayerFactory(name, sign) {
   const getName = () => {
@@ -39,16 +45,44 @@ function displayName() {
 }
 startBtn.addEventListener("click", displayName);
 
+function changeTurn() {
+  let Player1State = gameChecker(TicTacToe, Player1.getSign(), Player1.getName())[gameChecker(TicTacToe, Player1.getSign(), Player1.getName()).length - 1];
+  let Player2State = gameChecker(TicTacToe, Player2.getSign(), Player2.getName())[gameChecker(TicTacToe, Player2.getSign(), Player2.getName()).length - 1];
+
+  if (nextTurn === "O") {
+    nextTurn = "X";
+    gameDisplayer.innerText = `${Player1.getName()}, è il tuo turno`;
+  } else {
+    nextTurn = "O";
+    gameDisplayer.innerText = `${Player2.getName()}, è il tuo turno`;
+  }
+  if (Player1State === "!") {
+    gameDisplayer.innerText = `${Player1.getName()}, hai vinto!`;
+    gameEnded = true;
+    invisibleDiv.style.display = "block";
+  } else if (Player2State === "!") {
+    gameDisplayer.innerText = `${Player2.getName()}, hai vinto!`;
+    gameEnded = true;
+    invisibleDiv.style.display = "block";
+  } else if (isTicTacToeFull(TicTacToe) && Player1State !== "!" && Player2State !== "!") {
+    gameDisplayer.innerText = `Pareggio!`;
+    gameEnded = true;
+    invisibleDiv.style.display = "block";
+  }
+}
 
 function PlayerAction(player) {
-  gameDisplayer.innerHTML = `${player.getName()}, è il tuo turno!`;
+  gameDisplayer.innerText = `${Player1.getName()}, è il tuo turno`
   TicTacToeCells.forEach(cell => {
     cell.addEventListener("click", () => {
-      TicTacToe[(Number(cell.id[cell.id.length - 1]))] = player.getSign();
+      if (cell.innerText === "") {
+        TicTacToe[(Number(cell.id[cell.id.length - 1]))] = nextTurn;
+        changeTurn();
+      }
       TicTacToeBuilder(TicTacToe);
-      console.log(TicTacToe);
     });
   });
+
 }
 
 
@@ -71,25 +105,15 @@ function TicTacToeBuilder(TicTacToe) {
 function gameController(Player1, Player2, TicTacToe) {
   let Player1State = gameChecker(TicTacToe, Player1.getSign(), Player1.getName())[gameChecker(TicTacToe, Player1.getSign(), Player1.getName()).length - 1];
   let Player2State = gameChecker(TicTacToe, Player2.getSign(), Player2.getName())[gameChecker(TicTacToe, Player2.getSign(), Player2.getName()).length - 1];
-
-
-  while (Player1State === "." && Player2State === "." && !isTicTacToeFull(TicTacToe) &&
+  if (Player1State === "." && Player2State === "." && !isTicTacToeFull(TicTacToe) &&
     (Player1.getName() !== "" || Player2.getName() !== "")) {
-    for (let i = 0; i < 3; i++) {
+    if (nextTurn === "X") {
       PlayerAction(Player1);
+    } else {
       PlayerAction(Player2);
     }
-    break;
   }
 
-  /*
-  	console.log(Player1.getName());
-    console.log(Player1State);
-    console.log(Player2State);
-    
-    console.log(gameChecker(TicTacToe, Player1.getSign(), Player1.getName()));
-    console.log(gameChecker(TicTacToe, Player2.getSign(), Player2.getName()));
-  */
 }
 
 function gameChecker(TicTacToe, sign, name) {
