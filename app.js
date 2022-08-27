@@ -4,6 +4,8 @@ const Player2TextBox = document.querySelector("#player-2-textbox");
 const startBtn = document.querySelector("#start-btn");
 const gameDisplayer = document.querySelector("#game-displayer");
 const invisibleDiv = document.querySelector("#invisible-div");
+const restartBtn = document.querySelector("#restart-btn");
+
 let gameEnded = false;
 
 let TicTacToe = [
@@ -12,21 +14,29 @@ let TicTacToe = [
   ' ', ' ', ' '
 ];
 
+restartBtn.addEventListener("click", gameRestart);
 
 var nextTurn = 'X';
 
 invisibleDiv.style.display = "none";
+restartBtn.style.display = "none";
 
 function PlayerFactory(name, sign) {
   const getName = () => {
     return name.toString();
   };
+
+  const setName = () => {
+    name = name;
+  };
+
   const getSign = () => {
     return sign.toString();
   };
 
   return {
     getName,
+    setName,
     getSign
   };
 }
@@ -35,6 +45,21 @@ let Player1 = {};
 let Player2 = {};
 
 
+function gameRestart() {
+  Player1TextBox.style.display = "block";
+  Player2TextBox.style.display = "block";
+  startBtn.style.display = "block";
+  Player1.setName = "";
+  Player2.setName = "";
+  for (let i = 0; i < TicTacToe.length; i++) {
+    TicTacToe[i] = " ";
+  }
+  TicTacToeBuilder(TicTacToe);
+  restartBtn.style.display = "none";
+  gameDisplayer.innerText = "";
+  invisibleDiv.style.display = "none";
+}
+
 function displayName() {
   Player1 = PlayerFactory(Player1TextBox.value.toString(), "X");
   Player2 = PlayerFactory(Player2TextBox.value.toString(), "O");
@@ -42,6 +67,8 @@ function displayName() {
   Player1TextBox.style.display = "none";
   Player2TextBox.style.display = "none";
   startBtn.style.display = "none";
+  Player1TextBox.value = "";
+  Player2TextBox.value = "";
 }
 startBtn.addEventListener("click", displayName);
 
@@ -60,14 +87,17 @@ function changeTurn() {
     gameDisplayer.innerText = `${Player1.getName()}, hai vinto!`;
     gameEnded = true;
     invisibleDiv.style.display = "block";
+    restartBtn.style.display = "block";
   } else if (Player2State === "!") {
     gameDisplayer.innerText = `${Player2.getName()}, hai vinto!`;
     gameEnded = true;
     invisibleDiv.style.display = "block";
+    restartBtn.style.display = "block";
   } else if (isTicTacToeFull(TicTacToe) && Player1State !== "!" && Player2State !== "!") {
     gameDisplayer.innerText = `Pareggio!`;
     gameEnded = true;
     invisibleDiv.style.display = "block";
+    restartBtn.style.display = "block";
   }
 }
 

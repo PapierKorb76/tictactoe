@@ -91,7 +91,8 @@ input:focus {
   outline: 2px solid #3B5898;
 }
 
-#start-btn {
+#start-btn,
+#restart-btn {
   font-size: 18px;
   width: 113px;
   height: 32px;
@@ -120,6 +121,6 @@ input:focus {
   margin: 1.5rem auto 0px auto;
   background-color: #00000000;
   position: absolute;
-  left: 39.5vw;
+  left: 40.5vw;
   top: 10vh;
 }
