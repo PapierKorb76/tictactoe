@@ -3,7 +3,7 @@
 
 This project was completed for The Odin Project Javascript  Tic Tac Toe Assignment. The aim of the project was to make a funny game of Tic Tac Toe which you can play with a friend or parent using JavaScript.
 
-![tic tac toe](https://github.com/PapierKorb76/tictactoe/assets/62933268/928e70bf-0e75-483b-a909-76d71a97bdef))
+![tic tac toe](https://github.com/PapierKorb76/tictactoe/assets/62933268/928e70bf-0e75-483b-a909-76d71a97bdef)
 
 ## Live Demo
 [Pizzack Website](https://papierkorb76.github.io/restaurant-page/)
