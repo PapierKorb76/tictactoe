@@ -6,7 +6,7 @@ This project was completed for The Odin Project Javascript  Tic Tac Toe Assignme
 ![tic tac toe](https://github.com/PapierKorb76/tictactoe/assets/62933268/928e70bf-0e75-483b-a909-76d71a97bdef)
 
 ## Live Demo
-[Tic Tac Toe Minigame]((https://papierkorb76.github.io/tictactoe/))
+[Tic Tac Toe Minigame](https://papierkorb76.github.io/tictactoe/)
 
 ## Improvements
 
